@@ -1,0 +1,38 @@
+.textarea {
+    outline: none;
+    background: transparent;
+    resize: none;
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    padding: 5px;
+    margin-right: 4px;
+    font-size: 16px;
+}
+
+.fw600 {
+    font-weight: 600;
+}
+
+.textarea::-webkit-scrollbar {
+    width: 8px;
+    background: #dadbe2;
+    border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-track {
+    width: 8px;
+    background: #dadbe2;
+    border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background: #bfc4ce;
+    border-radius: 4px;
+
+}
+
+.active {
+    border: 2px solid #0079bf;
+}

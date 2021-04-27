@@ -1,0 +1,155 @@
+.todos {
+    overflow-y: auto;
+    margin-right: 4px;
+    padding-right: 4px;
+}
+
+.todos::-webkit-scrollbar {
+    width: 8px;
+    background: #dadbe2;
+    border-radius: 4px;
+}
+
+.todos::-webkit-scrollbar-thumb {
+    background: #bfc4ce;
+    border-radius: 4px;
+}
+
+.todo {
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.todoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+}
+
+.todo + .todo {
+    margin-top: 8px;
+}
+
+.todo:hover .actions {
+    opacity: 1;
+}
+
+.actions {
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    align-items: center;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.edit,
+.delete {
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.edit:hover,
+.delete:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.editIcon,
+.deleteIcon {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.modal {
+
+}
+
+.modalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.modalTitle {
+    font-weight: 600;
+}
+
+.modalClose {
+    padding: 8px;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.modalClose:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.closeIcon {
+    height: 15px;
+    width: 15px;
+    object-fit: contain;
+}
+
+.description {
+    outline: none;
+    background: transparent;
+    resize: none;
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.descriptionDiv {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.descriptionIcon {
+    margin-right: 10px;
+}
+
+.active {
+    border: 2px solid #0079bf;
+}
+
+.descriptionIcon {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.creationDate {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.creationDateSpan,
+.editDateSpan,
+.descriptionTitle {
+    font-weight: 500;
+}
