@@ -15,21 +15,24 @@
 
 .btn {
     border-radius: 5px;
-    color: #172b4d;
-    background: rgba(0, 0, 0, .08);
     padding: 8px;
-    height: fit-content;
     cursor: pointer;
-    text-align: center;
     outline: none;
     border: none;
+    transition: background 0.2s;
+}
+
+.addColumnBtn {
+    color: #172b4d;
+    background: rgba(0, 0, 0, .08);
+    height: fit-content;
+    text-align: center;
     width: 250px;
     flex-shrink: 0;
 }
 
-.btn:hover {
+.addColumnBtn:hover {
     background: rgba(0, 0, 0, .16);
-    width: 250px;
 }
 
 .create {
@@ -88,12 +91,7 @@
     margin-top: 8px;
     margin-right: 8px;
     background: transparent;
-    border: none;
-    outline: none;
     color: #5e6c84;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 5px;
     width: 100%;
 }
 
