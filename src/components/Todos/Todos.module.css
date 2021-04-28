@@ -31,14 +31,12 @@
     align-items: center;
     justify-content: space-between;
     transition: background 0.2s;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .todo:hover {
     background: rgba(0, 0, 0, 0.01);
-}
-
-.todo + .todo {
-    margin-top: 8px;
 }
 
 .todo:hover .actions {
