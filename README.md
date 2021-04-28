@@ -9,4 +9,6 @@
 * Edit the title and description of a todo
 * Swap todos between and in a column by dragging them
 
+### Supports Enter and Escape keys when adding a column / todo
+
 ### Data remains synchronized in localStorage
