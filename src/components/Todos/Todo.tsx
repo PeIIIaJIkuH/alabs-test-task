@@ -58,7 +58,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 						)}
 					</div>
 					<div className={s.actions}>
-						<button className={s.delete} onClick={handleOnDeleteClick}>
+						<button className={s.deleteTodo} onClick={handleOnDeleteClick}>
 							<img className={s.deleteIcon} src={trashCan} alt='trash can'/>
 						</button>
 					</div>

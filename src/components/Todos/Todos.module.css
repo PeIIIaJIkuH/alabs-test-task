@@ -63,20 +63,20 @@
     align-items: center;
 }
 
-.delete {
+.deleteTodo {
     outline: none;
     border: none;
     background: transparent;
     cursor: pointer;
-    padding: 3px;
+    padding: 5px;
     border-radius: 3px;
 }
 
-.delete:hover {
+.deleteTodo:hover {
     background: rgba(0, 0, 0, 0.08);
 }
 
-.delete:active {
+.deleteTodo:active {
     background: rgba(0, 0, 0, 0.16);
 }
 
