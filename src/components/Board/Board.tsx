@@ -3,6 +3,7 @@ import {FC, useState} from 'react'
 import refresh from '../../assets/images/refresh.svg'
 import store from '../../store/store'
 import {Columns} from '../Columns/Columns'
+import {ImageButton} from '../ImageButton/ImageButton'
 import s from './Board.module.css'
 
 export const Board: FC = observer(() => {
@@ -19,9 +20,7 @@ export const Board: FC = observer(() => {
 	return (
 		<div className={s.board} style={{backgroundImage: `url(${store.bgImageUrl})`}}>
 			<Columns columns={store.getColumns()}/>
-			<button className={`${s.changeBackgroundBtn} ${className}`} onClick={handleOnClick}>
-				<img src={refresh} alt='refresh' className={s.refreshIcon}/>
-			</button>
+			<ImageButton src={refresh} alt='refresh' handleClick={handleOnClick} className={`${s.changeBackgroundBtn} ${className}`} size={25}/>
 		</div>
 	)
 })

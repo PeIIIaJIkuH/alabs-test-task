@@ -6,6 +6,7 @@ import trashCan from '../../assets/images/trashCan.svg'
 import store from '../../store/store'
 import {IColumn, ITodo} from '../../types/types'
 import {trim} from '../../utils/trim'
+import {ImageButton} from '../ImageButton/ImageButton'
 import {Modal} from '../Modal/Modal'
 import {SwitchableTextarea} from '../SwitchableTextarea/SwitchableTextarea'
 import s from './Todos.module.css'
@@ -58,9 +59,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 						)}
 					</div>
 					<div className={s.actions}>
-						<button className={s.deleteTodo} onClick={handleOnDeleteClick}>
-							<img className={s.deleteIcon} src={trashCan} alt='trash can'/>
-						</button>
+						<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick}/>
 					</div>
 				</div>
 			)}

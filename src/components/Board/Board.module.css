@@ -13,15 +13,16 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
-    background: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.changeBackgroundBtn:hover {
+    background: transparent;
+}
+
+.changeBackgroundBtn:active {
+    background: transparent;
 }
 
 .rotate {
@@ -35,10 +36,4 @@
     to {
         transform: rotate(-720deg);
     }
-}
-
-.refreshIcon {
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
 }

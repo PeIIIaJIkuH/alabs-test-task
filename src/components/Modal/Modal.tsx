@@ -1,6 +1,7 @@
 import {FC, ReactElement, useEffect} from 'react'
 import ReactDom from 'react-dom'
 import close from '../../assets/images/close.svg'
+import {ImageButton} from '../ImageButton/ImageButton'
 import s from './Modal.module.css'
 
 interface ModalProps {
@@ -29,6 +30,10 @@ export const Modal: FC<ModalProps> = ({
 
 	if (!isOpen) return null
 
+	const handleOnCloseClick = () => {
+		closeModal()
+	}
+
 	return ReactDom.createPortal(
 		<>
 			<div className={s.overlay} onClick={() => closeModal()}/>
@@ -38,9 +43,7 @@ export const Modal: FC<ModalProps> = ({
 						{title}
 					</div>
 					{children}
-					<button className={s.modalClose} onClick={() => closeModal()}>
-						<img className={s.closeIcon} src={close} alt='close'/>
-					</button>
+					<ImageButton src={close} alt='close' handleClick={handleOnCloseClick} className={s.modalClose}/>
 				</div>
 			</div>
 		</>

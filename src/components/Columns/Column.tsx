@@ -1,5 +1,5 @@
 import {observer} from 'mobx-react-lite'
-import {ChangeEventHandler, FC, MouseEventHandler, useRef, useState} from 'react'
+import {ChangeEventHandler, FC, useRef, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
 import dots from '../../assets/images/dots.svg'
 import trashCan from '../../assets/images/trashCan.svg'
@@ -8,6 +8,7 @@ import store from '../../store/store'
 import {IColumn} from '../../types/types'
 import {trim} from '../../utils/trim'
 import {AddItem} from '../AddItem/AddItem'
+import {ImageButton} from '../ImageButton/ImageButton'
 import {SwitchableTextarea} from '../SwitchableTextarea/SwitchableTextarea'
 import {Todos} from '../Todos/Todos'
 import s from './Columns.module.css'
@@ -21,7 +22,7 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	const [isEditMode, setIsEditMode] = useState(false),
 		textareaRef = useRef<HTMLTextAreaElement>(null)
 
-	const handleOnDeleteClick: MouseEventHandler<HTMLButtonElement> = () => {
+	const handleOnDeleteClick = () => {
 		store.deleteColumn(column)
 	}
 
@@ -41,9 +42,7 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
 						<div className={s.actions}>
-							<button className={s.deleteColumn} onClick={handleOnDeleteClick}>
-								<img className={s.deleteIcon} src={trashCan} alt='trash can'/>
-							</button>
+							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteColumn}/>
 							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumn}`} {...provided.dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>

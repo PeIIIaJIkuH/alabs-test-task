@@ -84,29 +84,9 @@
 }
 
 .deleteColumn {
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-    border: none;
-    outline: none;
-    background: transparent;
     opacity: 0;
-    transition: background 0.2s;
-}
-
-.deleteColumn:hover {
-    background: rgba(0, 0, 0, 0.08);
-}
-
-.deleteColumn:active {
-    background: rgba(0, 0, 0, 0.16);
 }
 
 .column:hover .deleteColumn {
     opacity: 1;
-}
-
-.deleteIcon {
-    width: 15px;
-    height: 15px;
 }

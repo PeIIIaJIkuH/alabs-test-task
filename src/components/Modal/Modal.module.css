@@ -36,24 +36,5 @@
     position: absolute;
     right: -5px;
     top: 0;
-    outline: none;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 3px;
     transform: translateX(100%);
-}
-
-.modalClose:hover {
-    background: rgba(0, 0, 0, 0.08);
-}
-
-.modalClose:active {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.closeIcon {
-    width: 15px;
-    height: 15px;
-    object-fit: contain;
 }
