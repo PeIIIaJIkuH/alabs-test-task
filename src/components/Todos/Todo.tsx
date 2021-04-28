@@ -80,11 +80,11 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 								maxRows={15}/>
 			<div className={s.creationDate}>
 				<span className={s.creationDateSpan}>Created at: </span>
-				{new Date(todo.creationDate).toString()}
+				<span className={s.date}>{new Date(todo.creationDate).toString()}</span>
 			</div>
 			<div className={s.editDate}>
 				<span className={s.editDateSpan}>Edited at: </span>
-				{new Date(todo.editDate).toString()}
+				<span className={s.date}>{new Date(todo.editDate).toString()}</span>
 			</div>
 		</Modal>
 	</>

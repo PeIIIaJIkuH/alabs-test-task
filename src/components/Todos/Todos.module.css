@@ -58,11 +58,6 @@
     align-items: center;
 }
 
-.edit {
-    margin-right: 10px;
-}
-
-.edit,
 .delete {
     outline: none;
     border: none;
@@ -72,12 +67,14 @@
     border-radius: 3px;
 }
 
-.edit:hover,
 .delete:hover {
     background: rgba(0, 0, 0, 0.08);
 }
 
-.editIcon,
+.delete:active {
+    background: rgba(0, 0, 0, 0.16);
+}
+
 .deleteIcon {
     width: 13px;
     height: 13px;
@@ -161,4 +158,8 @@
 .editDateSpan,
 .descriptionTitle {
     font-weight: 500;
+}
+
+.date {
+    font-size: 14px;
 }
