@@ -44,7 +44,7 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 							<button className={s.deleteColumn} onClick={handleOnDeleteClick}>
 								<img className={s.deleteIcon} src={trashCan} alt='trash can'/>
 							</button>
-							<div className={s.dragColumn} {...provided.dragHandleProps}>
+							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumn}`} {...provided.dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>
 						</div>
