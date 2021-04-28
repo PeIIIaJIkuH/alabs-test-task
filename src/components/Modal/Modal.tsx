@@ -22,7 +22,6 @@ export const Modal: FC<ModalProps> = ({
 			}
 		}
 		document.addEventListener('keydown', listener)
-
 		return () => {
 			document.removeEventListener('keydown', listener)
 		}
@@ -36,7 +35,7 @@ export const Modal: FC<ModalProps> = ({
 
 	return ReactDom.createPortal(
 		<>
-			<div className={s.overlay} onClick={() => closeModal()}/>
+			<div className={s.overlay} onClick={handleOnCloseClick}/>
 			<div className={s.modal}>
 				<div className={s.modalInner}>
 					<div className={s.modalTitle}>

@@ -67,7 +67,8 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 
 		<Modal isEditMode={isEditModeTitle || isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} title={(
 			<SwitchableTextarea value={store.getTodoTitle(todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
-								isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold shouldExitOnEnter={false}/>
+								isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold shouldExitOnEnter={false}
+								fontSize={20}/>
 		)}>
 			<div className={s.descriptionDiv}>
 				<img src={description} alt='description' className={s.descriptionIcon}/>

@@ -12,11 +12,12 @@ interface Props {
 	setIsEditMode: (mode: boolean) => void
 	maxRows: number
 	bold?: boolean
+	fontSize?: number
 }
 
 export const SwitchableTextarea: FC<Props> = ({
 												  shouldExitOnEnter = true, value, handleOnChange, placeholder,
-												  isEditMode, setIsEditMode, maxRows, bold = false
+												  isEditMode, setIsEditMode, maxRows, bold = false, fontSize
 											  }) => {
 	const ref = useRef<HTMLTextAreaElement>(null)
 
@@ -42,5 +43,5 @@ export const SwitchableTextarea: FC<Props> = ({
 	})
 
 	return <TextareaAutosize className={`${s.textarea} ${isEditMode && s.active} ${bold && s.fw600}`} value={value} onChange={handleOnChange}
-							 onClick={handleOnClick} ref={ref} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows}/>
+							 onClick={handleOnClick} ref={ref} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows} style={{fontSize}}/>
 }
