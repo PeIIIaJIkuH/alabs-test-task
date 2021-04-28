@@ -19,10 +19,6 @@
     border-radius: 6px;
 }
 
-.column + .column {
-    margin-left: 10px;
-}
-
 .column {
     display: flex;
     flex-direction: column;
@@ -35,14 +31,19 @@
     max-height: calc(100% - 20px);
     margin-top: 10px;
     margin-bottom: 10px;
+    transition: background 0.2s;
 }
 
-.dragging {
-    background: #e6e9f7;
+.column + .column {
+    margin-left: 10px;
 }
 
 .column:first-of-type {
     margin-left: 10px;
+}
+
+.draggingColumn {
+    background: #e6e9f7;
 }
 
 .header {
@@ -73,7 +74,7 @@
     background: rgba(0, 0, 0, 0.08);
 }
 
-.draggingColumn {
+.draggingColumnThumb {
     background: rgba(0, 0, 0, 0.16);
 }
 

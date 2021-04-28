@@ -37,13 +37,13 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	return (
 		<Draggable draggableId={column.id} index={index}>
 			{(provided, snapshot) => (
-				<div className={`${s.column} ${snapshot.isDragging && s.dragging}`} {...provided.draggableProps} ref={provided.innerRef}>
+				<div className={`${s.column} ${snapshot.isDragging && s.draggingColumn}`} {...provided.draggableProps} ref={provided.innerRef}>
 					<div className={s.header}>
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
 						<div className={s.actions}>
 							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteColumn}/>
-							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumn}`} {...provided.dragHandleProps}>
+							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumnThumb}`} {...provided.dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>
 						</div>

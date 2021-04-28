@@ -48,14 +48,14 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	return <>
 		<Draggable draggableId={todo.id} index={index}>
 			{(provided, snapshot) => (
-				<div className={`${s.todo} ${snapshot.isDragging && s.dragging}`}
+				<div className={`${s.todo} ${snapshot.isDragging && s.draggingTodo}`}
 					 onClick={handleOnTodoClick} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-					<div className={s.content}>
+					<div>
 						<div className={s.title}>
 							{todo.title ? todo.title : 'Enter title'}
 						</div>
 						{todo.description?.trim() && (
-							<img src={description} alt='description' className={`${s.descriptionIcon} ${s.mt5}`}/>
+							<img src={description} alt='description' className={s.descriptionIcon}/>
 						)}
 					</div>
 					<div className={s.actions}>
@@ -64,6 +64,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 				</div>
 			)}
 		</Draggable>
+
 		<Modal isEditMode={isEditModeTitle || isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} title={(
 			<SwitchableTextarea value={store.getTodoTitle(todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
 								isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold shouldExitOnEnter={false}/>
@@ -81,7 +82,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 				<span className={s.creationDateSpan}>Created at: </span>
 				<span className={s.date}>{new Date(todo.creationDate).toString()}</span>
 			</div>
-			<div className={s.editDate}>
+			<div>
 				<span className={s.editDateSpan}>Edited at: </span>
 				<span className={s.date}>{new Date(todo.editDate).toString()}</span>
 			</div>

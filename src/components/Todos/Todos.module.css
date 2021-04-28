@@ -37,17 +37,6 @@
     background: rgba(0, 0, 0, 0.01);
 }
 
-.dragging {
-    background: lightgray;
-}
-
-.content {
-}
-
-.title {
-    word-break: break-word;
-}
-
 .todo + .todo {
     margin-top: 8px;
 }
@@ -56,19 +45,19 @@
     opacity: 1;
 }
 
+.draggingTodo {
+    background: #e6e9f7;
+}
+
+.title {
+    word-break: break-word;
+}
+
 .actions {
     opacity: 0;
     transition: opacity .3s;
     display: flex;
     align-items: center;
-}
-
-.mt5 {
-    margin-top: 5px;
-}
-
-.modal {
-
 }
 
 .modalHeader {
@@ -118,17 +107,10 @@
 }
 
 .descriptionIcon {
-    margin-right: 10px;
-}
-
-.active {
-    border: 2px solid #0079bf;
-}
-
-.descriptionIcon {
     width: 15px;
     height: 15px;
     object-fit: contain;
+    margin-top: 5px;
 }
 
 .creationDate {

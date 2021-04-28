@@ -1,6 +1,3 @@
-.addItem {
-}
-
 .width250 {
     width: 250px;
 }
@@ -13,7 +10,7 @@
     margin-right: 4px;
 }
 
-.btn {
+.addBtn {
     border-radius: 5px;
     padding: 8px;
     cursor: pointer;
@@ -35,7 +32,7 @@
     background: rgba(0, 0, 0, .16);
 }
 
-.create {
+.createDiv {
     border-radius: 5px;
     background: #ebecf0;
     padding: 4px;

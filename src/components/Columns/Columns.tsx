@@ -32,8 +32,8 @@ export const Columns: FC<ColumnsProps> = observer(({columns}) => {
 						{columns.map((column: IColumn, index) => (
 							<Column key={column.id} column={column} index={index}/>
 						))}
-						<AddItem text='Add Column' type='column'/>
 						{provided.placeholder}
+						<AddItem text='Add Column' type='column'/>
 					</div>
 
 				)}
