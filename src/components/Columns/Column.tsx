@@ -35,8 +35,8 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 
 	return (
 		<Draggable draggableId={column.id} index={index}>
-			{(provided) => (
-				<div className={s.column} {...provided.draggableProps} ref={provided.innerRef}>
+			{(provided, snapshot) => (
+				<div className={`${s.column} ${snapshot.isDragging && s.dragging}`} {...provided.draggableProps} ref={provided.innerRef}>
 					<div className={s.header}>
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>

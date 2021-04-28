@@ -37,6 +37,10 @@
     margin-bottom: 10px;
 }
 
+.dragging {
+    background: #e6e9f7;
+}
+
 .column:first-of-type {
     margin-left: 10px;
 }
