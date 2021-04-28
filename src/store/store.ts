@@ -1,14 +1,18 @@
 import {makeAutoObservable} from 'mobx'
 import {v4} from 'uuid'
 import {IColumn, IDBColumn, ITodo} from '../types/types'
+import {DEFAULTS} from '../utils/constants'
+import {getRandomInt} from '../utils/getRandomInt'
 
 class Store {
 	droppableId: string = v4()
+	bgImageUrl: string = DEFAULTS.bgImageUrl
 	columns = new Set<IColumn>()
 
 	constructor() {
 		makeAutoObservable(this)
-		this.getDataFromLocalStorage()
+		this.getBgImageUrlFromLocalStorage()
+		this.getColumnsFromLocalStorage()
 	}
 
 	getColumns() {
@@ -22,7 +26,7 @@ class Store {
 	setColumnName(column: IColumn, name: string) {
 		column.name = name
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	createColumn(name: string) {
@@ -32,13 +36,13 @@ class Store {
 			todos: new Set()
 		})
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	deleteColumn(column: IColumn) {
 		this.columns.delete(column)
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	createTodo(column: IColumn, name: string) {
@@ -50,7 +54,7 @@ class Store {
 			editDate: Date.now()
 		})
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	getTodos(column: IColumn) {
@@ -64,13 +68,13 @@ class Store {
 	setTodoTitle(todo: ITodo, title: string) {
 		todo.title = title
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	setTodoEditDate(todo: ITodo, date: number) {
 		todo.editDate = date
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	getTodoDescription(todo: ITodo) {
@@ -80,13 +84,13 @@ class Store {
 	setTodoDescription(todo: ITodo, description: string) {
 		todo.description = description
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	deleteTodo(column: IColumn, todo: ITodo) {
 		column.todos.delete(todo)
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	getColumnById(id: string): IColumn | null {
@@ -124,7 +128,7 @@ class Store {
 		newTodosArray.splice(destinationIndex, 0, todo)
 		destinationColumn.todos = new Set(newTodosArray)
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
 	swapColumns(sourceColumnIndex: number, destinationColumnIndex: number) {
@@ -134,10 +138,10 @@ class Store {
 		columnsArray.splice(destinationColumnIndex, 0, column)
 		this.columns = new Set(columnsArray)
 		this.droppableId = v4()
-		this.saveDataToLocalStorage()
+		this.saveColumnsToLocalStorage()
 	}
 
-	getAllData(): IDBColumn[] {
+	saveColumnsToLocalStorage() {
 		const columns: IDBColumn[] = []
 		this.columns.forEach(({id, name, todos}) => {
 			const newColumnTodos: ITodo[] = []
@@ -149,15 +153,10 @@ class Store {
 			}
 			columns.push(newColumn)
 		})
-		return columns
+		localStorage.setItem('columns-data', JSON.stringify(columns))
 	}
 
-	saveDataToLocalStorage() {
-		const data = this.getAllData()
-		localStorage.setItem('columns-data', JSON.stringify(data))
-	}
-
-	getDataFromLocalStorage() {
+	getColumnsFromLocalStorage() {
 		const item = localStorage.getItem('columns-data')
 		if (!item)
 			return
@@ -171,6 +170,21 @@ class Store {
 			columns.add({id, name, todos: newTodos})
 		})
 		this.columns = columns
+	}
+
+	saveBgImageUrlToLocalStorage() {
+		localStorage.setItem('bg-image-url', this.bgImageUrl)
+	}
+
+	getBgImageUrlFromLocalStorage() {
+		this.bgImageUrl = localStorage.getItem('bg-image-url') || DEFAULTS.bgImageUrl
+	}
+
+	changeBgImageUrl() {
+		const {innerWidth, innerHeight} = window,
+			id = getRandomInt(0, 100)
+		this.bgImageUrl = `https://picsum.photos/id/${id}/${innerWidth}/${innerHeight}`
+		this.saveBgImageUrlToLocalStorage()
 	}
 }
 
