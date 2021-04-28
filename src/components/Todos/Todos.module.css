@@ -34,7 +34,7 @@
 }
 
 .todo:hover {
-    background: #e3e3e3;
+    background: rgba(0, 0, 0, 0.01);
 }
 
 .dragging {
