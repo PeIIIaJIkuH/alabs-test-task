@@ -58,6 +58,11 @@
 .actions {
     display: flex;
     align-items: center;
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
 }
 
 .dragColumn {
@@ -84,10 +89,10 @@
     object-fit: contain;
 }
 
-.deleteColumn {
-    opacity: 0;
-}
+/*.deleteColumn {*/
+/*    opacity: 0;*/
+/*}*/
 
-.column:hover .deleteColumn {
+.column:hover .actions {
     opacity: 1;
 }

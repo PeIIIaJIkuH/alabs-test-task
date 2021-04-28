@@ -41,7 +41,7 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 					<div className={s.header}>
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
-						<div className={s.actions}>
+						<div className={`${s.actions} ${snapshot.isDragging && s.show}`}>
 							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteColumn}/>
 							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumnThumb}`} {...provided.dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>

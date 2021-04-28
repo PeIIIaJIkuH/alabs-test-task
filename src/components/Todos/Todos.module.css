@@ -1,9 +1,12 @@
 .todos {
     overflow-y: auto;
+    overflow-x: hidden;
     margin-right: 4px;
     padding-right: 4px;
     border-radius: 5px;
     min-height: 40px;
+    max-width: 238px;
+    transition: background 0.2s;
 }
 
 .todos::-webkit-scrollbar {
