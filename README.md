@@ -8,6 +8,7 @@
 * Create / delete todos
 * Edit the title and description of a todo
 * Swap todos between and in a column by dragging them
+* Change background
 
 ### Supports Enter and Escape keys when adding a column / todo
 
