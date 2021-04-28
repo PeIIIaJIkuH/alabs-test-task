@@ -1,7 +1,7 @@
 import {ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState} from 'react'
 import {useOnClickOutside} from '../../hooks/useOnClickOutside'
 import store from '../../store/store'
-import {IColumn} from '../../types'
+import {IColumn} from '../../types/types'
 import {trim} from '../../utils/trim'
 import s from './AddItem.module.css'
 
@@ -40,7 +40,6 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		} else if (type === 'todo') {
 			store.createTodo(column!, name.trim())
 		}
-
 		setName('')
 	}
 

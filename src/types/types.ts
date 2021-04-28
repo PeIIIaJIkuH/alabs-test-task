@@ -11,3 +11,9 @@ export interface IColumn {
 	name: string
 	todos: Set<ITodo>
 }
+
+export interface IDBColumn {
+	id: string
+	name: string
+	todos: ITodo[]
+}

@@ -1,12 +1,14 @@
 import {makeAutoObservable} from 'mobx'
 import {v4} from 'uuid'
-import {IColumn, ITodo} from '../types'
+import {IColumn, IDBColumn, ITodo} from '../types/types'
 
 class Store {
+	droppableId: string = v4()
 	columns = new Set<IColumn>()
 
 	constructor() {
 		makeAutoObservable(this)
+		this.getDataFromLocalStorage()
 	}
 
 	getColumns() {
@@ -19,6 +21,8 @@ class Store {
 
 	setColumnName(column: IColumn, name: string) {
 		column.name = name
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	createColumn(name: string) {
@@ -27,10 +31,14 @@ class Store {
 			name,
 			todos: new Set()
 		})
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	deleteColumn(column: IColumn) {
 		this.columns.delete(column)
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	createTodo(column: IColumn, name: string) {
@@ -41,22 +49,28 @@ class Store {
 			creationDate: Date.now(),
 			editDate: Date.now()
 		})
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	getTodos(column: IColumn) {
 		return Array.from(column.todos)
 	}
-	
+
 	getTodoTitle(todo: ITodo) {
 		return todo.title
 	}
-	
+
 	setTodoTitle(todo: ITodo, title: string) {
 		todo.title = title
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
-	
+
 	setTodoEditDate(todo: ITodo, date: number) {
 		todo.editDate = date
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	getTodoDescription(todo: ITodo) {
@@ -65,10 +79,98 @@ class Store {
 
 	setTodoDescription(todo: ITodo, description: string) {
 		todo.description = description
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
 	}
 
 	deleteTodo(column: IColumn, todo: ITodo) {
 		column.todos.delete(todo)
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
+	}
+
+	getColumnById(id: string): IColumn | null {
+		let column: IColumn | null = null
+		this.columns.forEach(col => {
+			if (col.id === id) {
+				column = col
+				return
+			}
+		})
+		return column
+	}
+
+	getTodoById(column: IColumn, id: string): ITodo | null {
+		let todo: ITodo | null = null
+		column.todos.forEach(t => {
+			if (t.id === id) {
+				todo = t
+				return t
+			}
+		})
+		return todo
+	}
+
+	swapTodos(sourceColumnId: string, destinationColumnId: string, todoId: string, destinationIndex: number) {
+		const sourceColumn = this.getColumnById(sourceColumnId),
+			destinationColumn = this.getColumnById(destinationColumnId)
+		if (!sourceColumn || !destinationColumn)
+			return
+		const todo = this.getTodoById(sourceColumn, todoId)
+		if (!todo)
+			return
+		sourceColumn.todos.delete(todo)
+		const newTodosArray = Array.from(destinationColumn.todos)
+		newTodosArray.splice(destinationIndex, 0, todo)
+		destinationColumn.todos = new Set(newTodosArray)
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
+	}
+
+	swapColumns(sourceColumnIndex: number, destinationColumnIndex: number) {
+		const columnsArray = Array.from(this.columns)
+		const column = {...columnsArray[sourceColumnIndex]}
+		columnsArray.splice(sourceColumnIndex, 1)
+		columnsArray.splice(destinationColumnIndex, 0, column)
+		this.columns = new Set(columnsArray)
+		this.droppableId = v4()
+		this.saveDataToLocalStorage()
+	}
+
+	getAllData(): IDBColumn[] {
+		const columns: IDBColumn[] = []
+		this.columns.forEach(({id, name, todos}) => {
+			const newColumnTodos: ITodo[] = []
+			todos.forEach(({id, title, description, creationDate, editDate}) => {
+				newColumnTodos.push({id, title, description, creationDate, editDate})
+			})
+			const newColumn: IDBColumn = {
+				id, name, todos: newColumnTodos
+			}
+			columns.push(newColumn)
+		})
+		return columns
+	}
+
+	saveDataToLocalStorage() {
+		const data = this.getAllData()
+		localStorage.setItem('columns-data', JSON.stringify(data))
+	}
+
+	getDataFromLocalStorage() {
+		const item = localStorage.getItem('columns-data')
+		if (!item)
+			return
+		const data: IDBColumn[] = JSON.parse(item)
+		const columns = new Set<IColumn>()
+		data.forEach(({id, name, todos}) => {
+			const newTodos = new Set<ITodo>()
+			todos.forEach(({id, title, description, creationDate, editDate}) => {
+				newTodos.add({id, title, description, creationDate, editDate})
+			})
+			columns.add({id, name, todos: newTodos})
+		})
+		this.columns = columns
 	}
 }
 

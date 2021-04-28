@@ -2,6 +2,8 @@
     overflow-y: auto;
     margin-right: 4px;
     padding-right: 4px;
+    border-radius: 5px;
+    min-height: 40px;
 }
 
 .todos::-webkit-scrollbar {
@@ -15,6 +17,10 @@
     border-radius: 4px;
 }
 
+.draggingOver {
+    background: ghostwhite;
+}
+
 .todo {
     background: white;
     padding: 8px;
@@ -22,13 +28,12 @@
     border-bottom: 1px solid gray;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
-}
-
-.todoHeader {
-    display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.dragging {
+    background: lightgray;
 }
 
 .content {

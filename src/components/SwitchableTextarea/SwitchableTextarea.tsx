@@ -30,7 +30,8 @@ export const SwitchableTextarea: FC<Props> = ({
 			e.preventDefault()
 			setIsEditMode(false)
 			ref?.current?.blur()
-		} else if (e.key === 'Escape') {
+		}
+		if (e.key === 'Escape') {
 			setIsEditMode(false)
 			ref.current?.blur()
 		}
