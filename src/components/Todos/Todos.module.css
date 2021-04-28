@@ -39,6 +39,10 @@
 .content {
 }
 
+.title {
+    word-break: break-word;
+}
+
 .todo + .todo {
     margin-top: 8px;
 }
