@@ -6,17 +6,17 @@
 }
 
 .columns::-webkit-scrollbar {
-    height: 12px;
+    height: 10px;
 }
 
 .columns::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, .15);
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .columns::-webkit-scrollbar-thumb {
     background: hsla(0, 0%, 100%, .4);
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .column {

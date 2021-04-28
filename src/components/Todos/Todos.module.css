@@ -11,13 +11,16 @@
 
 .todos::-webkit-scrollbar {
     width: 8px;
+}
+
+.todos::-webkit-scrollbar-track {
     background: #dadbe2;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .todos::-webkit-scrollbar-thumb {
     background: #bfc4ce;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .draggingOver {
