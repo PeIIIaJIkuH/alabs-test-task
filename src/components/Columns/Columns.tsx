@@ -27,12 +27,12 @@ export const Columns: FC<ColumnsProps> = observer(({columns}) => {
 	return (
 		<DragDropContext onDragEnd={handleOnDragEnd}>
 			<Droppable droppableId={store.droppableId} direction='horizontal' type='column'>
-				{(provided) => (
-					<div className={s.columns} {...provided.droppableProps} ref={provided.innerRef}>
+				{({droppableProps, innerRef, placeholder}) => (
+					<div className={s.columns} {...droppableProps} ref={innerRef}>
 						{columns.map((column: IColumn, index) => (
 							<Column key={column.id} column={column} index={index}/>
 						))}
-						{provided.placeholder}
+						{placeholder}
 						<AddItem text='Add Column' type='column'/>
 					</div>
 

@@ -56,10 +56,9 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 
 	return <>
 		<Draggable draggableId={todo.id} index={index}>
-			{(provided, snapshot) => (
-				<div
-					className={clsx(s.todo, isDeleting && s.hideTodo, store.createdItemId === todo.id && s.showTodo, snapshot.isDragging && s.draggingTodo)}
-					onClick={handleOnTodoClick} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+			{({draggableProps, dragHandleProps, innerRef}, {isDragging}) => (
+				<div className={clsx(s.todo, isDeleting && s.hideTodo, store.createdItemId === todo.id && s.showTodo, isDragging && s.draggingTodo)}
+					 onClick={handleOnTodoClick} {...draggableProps} {...dragHandleProps} ref={innerRef}>
 					<div>
 						<div className={s.title}>
 							{todo.title ? todo.title : 'Enter title'}

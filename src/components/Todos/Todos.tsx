@@ -14,12 +14,12 @@ interface TodosProps {
 export const Todos: FC<TodosProps> = observer(({todos, column}) => {
 	return (
 		<Droppable droppableId={column.id} type='todo'>
-			{(provided, snapshot) => (
-				<div className={clsx(s.todos, snapshot.isDraggingOver && s.draggingOver)} {...provided.droppableProps} ref={provided.innerRef}>
+			{({droppableProps, placeholder, innerRef}, {isDraggingOver}) => (
+				<div className={clsx(s.todos, isDraggingOver && s.draggingOver)} {...droppableProps} ref={innerRef}>
 					{todos.map((todo: ITodo, index) => (
 						<Todo key={todo.id} todo={todo} column={column} index={index}/>
 					))}
-					{provided.placeholder}
+					{placeholder}
 				</div>
 			)}
 		</Droppable>
