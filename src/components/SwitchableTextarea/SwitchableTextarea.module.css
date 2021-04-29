@@ -35,7 +35,10 @@
 .textarea::-webkit-scrollbar-thumb {
     background: #bfc4ce;
     border-radius: 4px;
+}
 
+.textarea::-webkit-scrollbar-thumb:hover {
+    background: #b0b3bd;
 }
 
 .active {
