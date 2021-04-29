@@ -8,6 +8,7 @@ class Store {
 	droppableId: string = v4()
 	bgImageUrl: string = DEFAULTS.bgImageUrl
 	createdItemId: string = ''
+	wasAddItemClicked: boolean = false
 	columns = new Set<IColumn>()
 
 	constructor() {

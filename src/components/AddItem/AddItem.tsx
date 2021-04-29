@@ -15,6 +15,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	const [name, setName] = useState(''),
 		[isEditMode, setIsEditMode] = useState(false),
 		[isAnimated, setIsAnimated] = useState(false),
+		[className, setClassName] = useState(''),
 		inputRef = useRef<HTMLInputElement>(null),
 		createDivRef = useRef<HTMLDivElement>(null)
 
@@ -28,6 +29,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	}
 
 	const closeInput = () => {
+		setClassName(s.showAddBtn)
 		setIsAnimated(false)
 		setTimeout(() => {
 			setName('')
@@ -74,7 +76,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	return (
 		<div className={`${s.addDiv} ${isEditMode && s.expandAddDiv} ${type === 'column' ? s.addColumnDiv : s.addTodoDiv}`}>
 			{!isEditMode ? (
-				<button className={`${s.addBtn} ${isAnimated ? s.hideAddBtn : s.showAddBtn} ${type === 'column' ? s.addColumnBtn : s.addTodoBtn}`}
+				<button className={`${s.addBtn} ${isAnimated ? s.hideAddBtn : className} ${type === 'column' ? s.addColumnBtn : s.addTodoBtn}`}
 						onClick={handleOnAddClick}>
 					{text}
 				</button>
