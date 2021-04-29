@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
-import {FC, useState} from 'react'
+import {FC, useEffect, useState} from 'react'
 import refresh from '../../assets/images/refresh.svg'
 import store from '../../store/store'
 import {Columns} from '../Columns/Columns'
@@ -13,10 +13,17 @@ export const Board: FC = observer(() => {
 	const handleOnClick = () => {
 		setBtnClassName(s.rotate)
 		store.changeBgImageUrl()
-		setTimeout(() => {
-			setBtnClassName('')
-		}, 1000)
 	}
+
+	useEffect(() => {
+		setBtnClassName(s.rotate)
+		const img = new Image()
+		img.src = store.bgImageUrl
+		img.onload = () => {
+			setBtnClassName('')
+		}
+		// eslint-disable-next-line
+	}, [store.bgImageUrl])
 
 	return (
 		<div className={s.board} style={{backgroundImage: `url(${store.bgImageUrl})`}}>
