@@ -182,7 +182,7 @@ class Store {
 
 	changeBgImageUrl() {
 		const {innerWidth, innerHeight} = window,
-			id = getRandomInt(0, 100)
+			id = getRandomInt(0, 50)
 		this.bgImageUrl = `https://picsum.photos/id/${id}/${innerWidth}/${innerHeight}`
 		this.saveBgImageUrlToLocalStorage()
 	}
