@@ -19,7 +19,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		[isEditMode, setIsEditMode] = useState(false),
 		[isAnimated, setIsAnimated] = useState(false),
 		[itemWasCreated, setItemWasCreated] = useState(false),
-		[className, setClassName] = useState(''),
+		[btnClassName, setBtnClassName] = useState(''),
 		inputRef = useRef<HTMLInputElement>(null),
 		createDivRef = useRef<HTMLDivElement>(null)
 
@@ -30,7 +30,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	const handleOnAddClick = () => {
 		setIsEditMode(true)
 		setIsAnimated(true)
-		setClassName(s.showAddBtn)
+		setBtnClassName(s.showAddBtn)
 	}
 
 	const closeInput = () => {
@@ -84,7 +84,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		<div
 			className={clsx(s.addDiv, isEditMode && s.expandAddDiv, type === 'column' ? s.addColumnDiv : s.addTodoDiv, itemWasCreated && s.moveRight)}>
 			{!isEditMode ? (
-				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : className, type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
+				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : btnClassName, type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
 						onClick={handleOnAddClick}>
 					{text}
 				</button>
