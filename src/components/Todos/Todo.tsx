@@ -1,5 +1,5 @@
 import {observer} from 'mobx-react-lite'
-import {ChangeEventHandler, FC, MouseEventHandler, useState} from 'react'
+import {ChangeEventHandler, FC, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
 import description from '../../assets/images/description.svg'
 import trashCan from '../../assets/images/trashCan.svg'
@@ -20,13 +20,21 @@ interface TodoProps {
 export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	const [isModalOpen, setIsModalOpen] = useState(false),
 		[isEditModeDescription, setIsEditModeDescription] = useState(false),
-		[isEditModeTitle, setIsEditModeTitle] = useState(false)
+		[isEditModeTitle, setIsEditModeTitle] = useState(false),
+		[isDeleting, setIsDeleting] = useState(false)
 
 	const handleOnDeleteClick = () => {
-		store.deleteTodo(column, todo)
+		setIsDeleting(true)
+		setTimeout(() => {
+			setIsModalOpen(false)
+		}, 0)
+		setTimeout(() => {
+			setIsDeleting(false)
+			store.deleteTodo(column, todo)
+		}, 200)
 	}
 
-	const handleOnTodoClick: MouseEventHandler<HTMLDivElement> = () => {
+	const handleOnTodoClick = () => {
 		setIsModalOpen(true)
 	}
 
@@ -48,8 +56,9 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	return <>
 		<Draggable draggableId={todo.id} index={index}>
 			{(provided, snapshot) => (
-				<div className={`${s.todo} ${snapshot.isDragging && s.draggingTodo}`}
-					 onClick={handleOnTodoClick} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+				<div
+					className={`${s.todo} ${isDeleting && s.hideTodo} ${store.createdItemId === todo.id && s.showTodo} ${snapshot.isDragging && s.draggingTodo}`}
+					onClick={handleOnTodoClick} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 					<div>
 						<div className={s.title}>
 							{todo.title ? todo.title : 'Enter title'}

@@ -1,5 +1,5 @@
 .todos {
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     margin-right: 4px;
     padding-right: 4px;
@@ -29,16 +29,18 @@
 
 .todo {
     background: white;
-    padding: 8px;
     border-radius: 5px;
     border-bottom: 1px solid gray;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background 0.2s;
-    margin-top: 8px;
+    transition: background 0.2s, opacity 0.1s;
     margin-bottom: 8px;
+    padding: 8px;
+    height: auto;
+    opacity: 1;
+    overflow: hidden;
 }
 
 .todo:hover {
@@ -47,6 +49,41 @@
 
 .todo:hover .actions {
     opacity: 1;
+}
+
+.showTodo {
+    animation: show 0.2s forwards;
+}
+
+.hideTodo {
+    opacity: 0;
+    animation: hide 0.2s forwards;
+}
+
+@keyframes show {
+    from {
+        padding: 0 8px;
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        padding: 8px;
+        height: auto;
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    from {
+        padding: 8px;
+        height: auto;
+        margin-bottom: 8px;
+    }
+    to {
+        padding: 0 8px;
+        height: 0;
+        margin-bottom: 0;
+    }
 }
 
 .draggingTodo {

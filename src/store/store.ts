@@ -7,6 +7,7 @@ import {getRandomInt} from '../utils/getRandomInt'
 class Store {
 	droppableId: string = v4()
 	bgImageUrl: string = DEFAULTS.bgImageUrl
+	createdItemId: string = ''
 	columns = new Set<IColumn>()
 
 	constructor() {
@@ -30,12 +31,17 @@ class Store {
 	}
 
 	createColumn(name: string) {
+		const id = v4()
 		this.columns.add({
-			id: v4(),
+			id,
 			name,
 			todos: new Set()
 		})
 		this.droppableId = v4()
+		this.createdItemId = id
+		setTimeout(() => {
+			this.createdItemId = ''
+		}, 200)
 		this.saveColumnsToLocalStorage()
 	}
 
@@ -46,14 +52,19 @@ class Store {
 	}
 
 	createTodo(column: IColumn, name: string) {
+		const id = v4()
 		column.todos.add({
-			id: v4(),
+			id,
 			title: name,
 			description: '',
 			creationDate: Date.now(),
 			editDate: Date.now()
 		})
 		this.droppableId = v4()
+		this.createdItemId = id
+		setTimeout(() => {
+			this.createdItemId = ''
+		}, 200)
 		this.saveColumnsToLocalStorage()
 	}
 

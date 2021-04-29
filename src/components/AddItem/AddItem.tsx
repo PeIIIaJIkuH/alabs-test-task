@@ -39,7 +39,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		closeInput()
 	}
 
-	const createColumn = (name: string) => {
+	const createItem = (name: string) => {
 		if (type === 'column') {
 			store.createColumn(name.trim())
 		} else if (type === 'todo') {
@@ -50,7 +50,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 
 	const handleOnInputKeyPress: KeyboardEventHandler<HTMLInputElement> = (e) => {
 		if (e.key === 'Enter' && name.trim() !== '') {
-			createColumn(name)
+			createItem(name)
 		}
 	}
 
@@ -62,7 +62,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 
 	const handleOnCreateclick: MouseEventHandler<HTMLButtonElement> = () => {
 		if (name.trim() !== '') {
-			createColumn(name)
+			createItem(name)
 		}
 		inputRef.current?.focus()
 	}
