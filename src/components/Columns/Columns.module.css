@@ -27,7 +27,8 @@
     padding: 8px 0 8px 8px;
     color: #6b778c;
     flex: 0 0 250px;
-    height: fit-content;
+    /*height: fit-content;*/
+    align-self: flex-start;
     max-height: calc(100% - 20px);
     margin-top: 10px;
     margin-bottom: 10px;
@@ -52,6 +53,7 @@
 
 .hideColumn {
     margin-left: 0;
+    transform-origin: top;
     animation: fade-out 0.2s forwards;
 }
 
