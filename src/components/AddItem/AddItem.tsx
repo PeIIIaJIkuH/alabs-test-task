@@ -32,6 +32,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		setClassName(s.showAddBtn)
 		setIsAnimated(false)
 		setTimeout(() => {
+			setClassName('')
 			setName('')
 			setIsEditMode(false)
 		}, 200)
