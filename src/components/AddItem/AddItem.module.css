@@ -1,12 +1,9 @@
-.width250 {
+.addColumnDiv {
+    margin: 10px;
     width: 250px;
 }
 
-.margin10 {
-    margin: 10px;
-}
-
-.marginRight4 {
+.addTodoDiv {
     margin-right: 4px;
 }
 

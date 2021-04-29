@@ -67,7 +67,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	})
 
 	return (
-		<div className={`${type === 'column' ? `${s.width250} ${s.margin10}` : s.marginRight4}`}>
+		<div className={`${type === 'column' ? s.addColumnDiv : s.addTodoDiv}`}>
 			{!isEditMode ? (
 				<button className={`${s.addBtn} ${type === 'column' ? s.addColumnBtn : s.addTodoBtn}`} onClick={handleOnAddClick}>
 					{text}
