@@ -35,7 +35,7 @@ class Store {
 		const id = v4()
 		this.columns.add({
 			id,
-			name,
+			name: name.trim(),
 			todos: new Set()
 		})
 		this.droppableId = v4()
@@ -56,7 +56,7 @@ class Store {
 		const id = v4()
 		column.todos.add({
 			id,
-			title: name,
+			title: name.trim(),
 			description: '',
 			creationDate: Date.now(),
 			editDate: Date.now()

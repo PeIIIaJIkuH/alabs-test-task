@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
 import {ChangeEventHandler, FC, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
@@ -57,7 +58,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 		<Draggable draggableId={todo.id} index={index}>
 			{(provided, snapshot) => (
 				<div
-					className={`${s.todo} ${isDeleting && s.hideTodo} ${store.createdItemId === todo.id && s.showTodo} ${snapshot.isDragging && s.draggingTodo}`}
+					className={clsx(s.todo, isDeleting && s.hideTodo, store.createdItemId === todo.id && s.showTodo, snapshot.isDragging && s.draggingTodo)}
 					onClick={handleOnTodoClick} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 					<div>
 						<div className={s.title}>
@@ -68,7 +69,7 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 						)}
 					</div>
 					<div className={s.actions}>
-						<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick}/>
+						<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteBtn}/>
 					</div>
 				</div>
 			)}

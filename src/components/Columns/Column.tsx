@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
 import {ChangeEventHandler, FC, useRef, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
@@ -20,10 +21,14 @@ interface ColumnProps {
 
 export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	const [isEditMode, setIsEditMode] = useState(false),
+		[isDeleting, setIsDeleting] = useState(false),
 		textareaRef = useRef<HTMLTextAreaElement>(null)
 
 	const handleOnDeleteClick = () => {
-		store.deleteColumn(column)
+		setIsDeleting(true)
+		setTimeout(() => {
+			store.deleteColumn(column)
+		}, 200)
 	}
 
 	const handleOnTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
@@ -37,13 +42,14 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	return (
 		<Draggable draggableId={column.id} index={index}>
 			{(provided, snapshot) => (
-				<div className={`${s.column} ${snapshot.isDragging && s.draggingColumn}`} {...provided.draggableProps} ref={provided.innerRef}>
+				<div className={clsx(s.column, store.createdItemId === column.id && s.showColumn, snapshot.isDragging && s.draggingColumn, isDeleting && s.hideColumn)}
+					 ref={provided.innerRef} {...provided.draggableProps}>
 					<div className={s.header}>
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
-						<div className={`${s.actions} ${snapshot.isDragging && s.show}`}>
+						<div className={clsx(s.actions, snapshot.isDragging && s.show)}>
 							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteColumn}/>
-							<div className={`${s.dragColumn} ${snapshot.isDragging && s.draggingColumnThumb}`} {...provided.dragHandleProps}>
+							<div className={clsx(s.dragColumn, snapshot.isDragging && s.draggingColumnThumb)} {...provided.dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>
 						</div>

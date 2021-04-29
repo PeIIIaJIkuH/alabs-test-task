@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef} from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import {useOnClickOutside} from '../../hooks/useOnClickOutside'
@@ -42,6 +43,6 @@ export const SwitchableTextarea: FC<Props> = ({
 		setIsEditMode(false)
 	})
 
-	return <TextareaAutosize className={`${s.textarea} ${isEditMode && s.active} ${bold && s.fw600}`} value={value} onChange={handleOnChange}
-							 onClick={handleOnClick} ref={ref} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows} style={{fontSize}}/>
+	return <TextareaAutosize className={clsx(s.textarea, isEditMode && s.active, bold && s.bold)} value={value} onChange={handleOnChange} ref={ref}
+							 onClick={handleOnClick} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows} style={{fontSize}}/>
 }

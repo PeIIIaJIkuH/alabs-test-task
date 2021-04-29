@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState} from 'react'
 import {useOnClickOutside} from '../../hooks/useOnClickOutside'
 import store from '../../store/store'
@@ -15,6 +16,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	const [name, setName] = useState(''),
 		[isEditMode, setIsEditMode] = useState(false),
 		[isAnimated, setIsAnimated] = useState(false),
+		[itemWasCreated, setItemWasCreated] = useState(false),
 		[className, setClassName] = useState(''),
 		inputRef = useRef<HTMLInputElement>(null),
 		createDivRef = useRef<HTMLDivElement>(null)
@@ -26,14 +28,12 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	const handleOnAddClick = () => {
 		setIsEditMode(true)
 		setIsAnimated(true)
+		setClassName(s.showAddBtn)
 	}
 
 	const closeInput = () => {
-		setClassName(s.showAddBtn)
 		setIsAnimated(false)
 		setTimeout(() => {
-			setClassName('')
-			setName('')
 			setIsEditMode(false)
 		}, 200)
 	}
@@ -44,9 +44,13 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 
 	const createItem = (name: string) => {
 		if (type === 'column') {
-			store.createColumn(name.trim())
+			setItemWasCreated(true)
+			setTimeout(() => {
+				store.createColumn(name)
+				setItemWasCreated(false)
+			}, 200)
 		} else if (type === 'todo') {
-			store.createTodo(column!, name.trim())
+			store.createTodo(column!, name)
 		}
 		setName('')
 	}
@@ -75,14 +79,15 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 	})
 
 	return (
-		<div className={`${s.addDiv} ${isEditMode && s.expandAddDiv} ${type === 'column' ? s.addColumnDiv : s.addTodoDiv}`}>
+		<div
+			className={clsx(s.addDiv, isEditMode && s.expandAddDiv, type === 'column' ? s.addColumnDiv : s.addTodoDiv, itemWasCreated && s.moveRight)}>
 			{!isEditMode ? (
-				<button className={`${s.addBtn} ${isAnimated ? s.hideAddBtn : className} ${type === 'column' ? s.addColumnBtn : s.addTodoBtn}`}
+				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : className, type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
 						onClick={handleOnAddClick}>
 					{text}
 				</button>
 			) : (
-				<div className={`${s.createDiv} ${isAnimated ? s.showCreateDiv : s.hideCreateDiv}`} ref={createDivRef}>
+				<div className={clsx(s.createDiv, isAnimated ? s.showCreateDiv : s.hideCreateDiv)} ref={createDivRef}>
 					<input autoFocus className={s.input} type='text' value={name} onChange={handleOnInputChange} onKeyPress={handleOnInputKeyPress}
 						   onKeyDown={handleOnInputKeyDown} ref={inputRef}/>
 					<div className={s.actions}>

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
 import {FC, useState} from 'react'
 import refresh from '../../assets/images/refresh.svg'
@@ -20,7 +21,7 @@ export const Board: FC = observer(() => {
 	return (
 		<div className={s.board} style={{backgroundImage: `url(${store.bgImageUrl})`}}>
 			<Columns columns={store.getColumns()}/>
-			<ImageButton src={refresh} alt='refresh' handleClick={handleOnClick} className={`${s.changeBackgroundBtn} ${className}`} size={25}/>
+			<ImageButton src={refresh} alt='refresh' handleClick={handleOnClick} className={clsx(s.changeBackgroundBtn, className)} size={25}/>
 		</div>
 	)
 })

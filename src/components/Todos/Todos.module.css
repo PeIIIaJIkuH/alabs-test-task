@@ -33,7 +33,7 @@
     border-bottom: 1px solid gray;
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     transition: background 0.2s, opacity 0.1s;
     margin-bottom: 8px;
@@ -65,11 +65,13 @@
         padding: 0 8px;
         height: 0;
         opacity: 0;
+        margin-bottom: 0;
     }
     to {
         padding: 8px;
         height: auto;
         opacity: 1;
+        margin-bottom: 8px;
     }
 }
 
@@ -164,4 +166,8 @@
 
 .date {
     font-size: 14px;
+}
+
+.deleteBtn {
+    margin-left: 5px;
 }
