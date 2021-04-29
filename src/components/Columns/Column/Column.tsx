@@ -2,17 +2,17 @@ import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
 import {ChangeEventHandler, FC, useRef, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
-import dots from '../../assets/images/dots.svg'
-import trashCan from '../../assets/images/trashCan.svg'
-import {useOnClickOutside} from '../../hooks/useOnClickOutside'
-import store from '../../store/store'
-import {IColumn} from '../../types/types'
-import {trim} from '../../utils/trim'
-import {AddItem} from '../AddItem/AddItem'
-import {ImageButton} from '../ImageButton/ImageButton'
-import {SwitchableTextarea} from '../SwitchableTextarea/SwitchableTextarea'
-import {Todos} from '../Todos/Todos'
-import s from './Columns.module.css'
+import dots from '../../../assets/images/dots.svg'
+import trashCan from '../../../assets/images/trashCan.svg'
+import {useOnClickOutside} from '../../../hooks/useOnClickOutside'
+import store from '../../../store/store'
+import {IColumn} from '../../../types/types'
+import {trim} from '../../../utils/trim'
+import {AddItem} from '../../AddItem/AddItem'
+import {ImageButton} from '../../ImageButton/ImageButton'
+import {SwitchableTextarea} from '../../SwitchableTextarea/SwitchableTextarea'
+import {Todos} from '../../Todos/Todos'
+import s from './Column.module.css'
 
 interface ColumnProps {
 	column: IColumn
@@ -48,7 +48,7 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
 											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
 						<div className={clsx(s.actions, isDragging && s.show)}>
-							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick} className={s.deleteColumn}/>
+							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick}/>
 							<div className={clsx(s.dragColumn, isDragging && s.draggingColumnThumb)} {...dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>

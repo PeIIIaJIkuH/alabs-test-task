@@ -4,7 +4,7 @@ import {DragDropContext, Droppable, DropResult} from 'react-beautiful-dnd'
 import store from '../../store/store'
 import {IColumn} from '../../types/types'
 import {AddItem} from '../AddItem/AddItem'
-import {Column} from './Column'
+import {Column} from './Column/Column'
 import s from './Columns.module.css'
 
 interface ColumnsProps {
