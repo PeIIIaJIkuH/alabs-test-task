@@ -1,3 +1,14 @@
+.addDiv {
+    height: auto;
+    min-height: 31px;
+    max-height: 31px;
+    transition: max-height 0.1s;
+}
+
+.expandAddDiv {
+    max-height: 80px;
+}
+
 .addColumnDiv {
     margin: 10px;
     width: 250px;
@@ -16,6 +27,14 @@
     transition: background 0.2s;
 }
 
+.showAddBtn {
+    animation: fade-in 0.2s forwards;
+}
+
+.hideAddBtn {
+    animation: fade-out 0.2s forwards;
+}
+
 .addColumnBtn {
     color: #172b4d;
     background: rgba(0, 0, 0, .08);
@@ -32,9 +51,60 @@
 .createDiv {
     border-radius: 5px;
     background: #ebecf0;
-    padding: 4px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    padding: 0 4px;
+    height: 0;
+    opacity: 0;
+}
+
+.showCreateDiv {
+    animation: expand 0.1s forwards, fade-in 0.2s forwards;
+}
+
+.hideCreateDiv {
+    animation: shrink 0.1s forwards, fade-out 0.2s forwards;
+}
+
+@keyframes expand {
+    from {
+        height: 0;
+        padding: 0 4px;
+    }
+    to {
+        height: 80px;
+        padding: 4px;
+    }
+}
+
+@keyframes shrink {
+    from {
+        height: 80px;
+        padding: 4px;
+    }
+    to {
+        height: 0;
+        padding: 0 4px;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .input {
@@ -82,7 +152,7 @@
 }
 
 .addTodoBtn {
-    margin-top: 8px;
+    /*margin-top: 8px;*/
     margin-right: 8px;
     background: transparent;
     color: #5e6c84;
