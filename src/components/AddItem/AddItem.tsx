@@ -4,7 +4,9 @@ import {useOnClickOutside} from '../../hooks/useOnClickOutside'
 import store from '../../store/store'
 import {IColumn} from '../../types/types'
 import {trim} from '../../utils/trim'
+import {ImageButton} from '../ImageButton/ImageButton'
 import s from './AddItem.module.css'
+import close from '../../assets/images/close.svg'
 
 interface AddItemProps {
 	text: string
@@ -94,9 +96,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 						<button className={s.createBtn} onClick={handleOnCreateclick}>
 							{text}
 						</button>
-						<button className={s.cancelBtn} onClick={handleOnCancelClick}>
-							&#10006;
-						</button>
+						<ImageButton src={close} alt='close' handleClick={handleOnCancelClick}/>
 					</div>
 				</div>
 			)}

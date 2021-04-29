@@ -129,6 +129,10 @@
     margin-bottom: 4px;
 }
 
+.actions {
+    display: flex;
+}
+
 .createBtn {
     color: white;
     outline: none;
@@ -146,23 +150,6 @@
 
 .createBtn:active {
     background: #49852e;
-}
-
-.cancelBtn {
-    outline: none;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 3px;
-    padding: 8px;
-}
-
-.cancelBtn:hover {
-    background: rgba(0, 0, 0, 0.08);
-}
-
-.cancelBtn:active {
-    background: rgba(0, 0, 0, 0.16);
 }
 
 .addTodoBtn {
