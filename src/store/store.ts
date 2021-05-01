@@ -2,7 +2,6 @@ import {makeAutoObservable} from 'mobx'
 import {v4} from 'uuid'
 import {IColumn, IDBColumn, ITodo} from '../types/types'
 import {DEFAULTS} from '../utils/constants'
-import {getRandomInt} from '../utils/getRandomInt'
 
 class Store {
 	droppableId: string = v4()
@@ -192,10 +191,8 @@ class Store {
 		this.bgImageUrl = localStorage.getItem('bg-image-url') || DEFAULTS.bgImageUrl
 	}
 
-	changeBgImageUrl() {
-		const {innerWidth, innerHeight} = window,
-			id = getRandomInt(0, 50)
-		this.bgImageUrl = `https://picsum.photos/id/${id}/${innerWidth}/${innerHeight}`
+	setBgImageUrl(imgUrl: string) {
+		this.bgImageUrl = imgUrl
 		this.saveBgImageUrlToLocalStorage()
 	}
 }
