@@ -37,6 +37,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		setIsAnimated(false)
 		setTimeout(() => {
 			setIsEditMode(false)
+			setName('')
 		}, 200)
 	}
 
