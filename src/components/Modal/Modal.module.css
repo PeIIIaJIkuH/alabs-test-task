@@ -6,7 +6,7 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.2s forwards;
 }
 
 .modal {
@@ -17,7 +17,7 @@
     transform: translate(-50%, -50%);
     background: white;
     border-radius: 5px;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.2s forwards;
 }
 
 @keyframes fade-in {
@@ -26,6 +26,15 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 

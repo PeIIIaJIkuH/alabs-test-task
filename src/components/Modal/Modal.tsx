@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {FC, ReactElement, useEffect} from 'react'
 import ReactDom from 'react-dom'
 import close from '../../assets/images/close.svg'
@@ -9,10 +10,11 @@ interface ModalProps {
 	closeModal: () => void
 	title: ReactElement
 	isEditMode: boolean
+	className?: string
 }
 
 export const Modal: FC<ModalProps> = ({
-										  children,
+										  children, className,
 										  isOpen, closeModal, title, isEditMode
 									  }) => {
 	useEffect(() => {
@@ -35,8 +37,8 @@ export const Modal: FC<ModalProps> = ({
 
 	return ReactDom.createPortal(
 		<>
-			<div className={s.overlay} onClick={handleOnCloseClick}/>
-			<div className={s.modal}>
+			<div className={clsx(s.overlay, className)} onClick={handleOnCloseClick}/>
+			<div className={clsx(s.modal, className)}>
 				<div className={s.modalInner}>
 					<div className={s.modalTitle}>
 						{title}

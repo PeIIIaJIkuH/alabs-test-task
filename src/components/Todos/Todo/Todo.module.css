@@ -79,6 +79,19 @@
     font-size: 14px;
 }
 
+.modalClosing {
+    animation: fade-out 0.2s forwards;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 @keyframes show {
     from {
         padding: 0 8px;

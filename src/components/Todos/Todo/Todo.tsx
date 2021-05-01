@@ -22,7 +22,8 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	const [isModalOpen, setIsModalOpen] = useState(false),
 		[isEditModeDescription, setIsEditModeDescription] = useState(false),
 		[isEditModeTitle, setIsEditModeTitle] = useState(false),
-		[isDeleting, setIsDeleting] = useState(false)
+		[isDeleting, setIsDeleting] = useState(false),
+		[modalClassName, setModalClassName] = useState('')
 
 	const handleOnDeleteClick = () => {
 		setIsDeleting(true)
@@ -40,8 +41,12 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	}
 
 	const handleOnModalClose = () => {
-		setIsModalOpen(false)
-		setIsEditModeDescription(false)
+		setModalClassName(s.modalClosing)
+		setTimeout(() => {
+			setIsModalOpen(false)
+			setIsEditModeDescription(false)
+			setModalClassName('')
+		}, 200)
 	}
 
 	const handleOnDescriptionChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
@@ -74,10 +79,11 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 			)}
 		</Draggable>
 
-		<Modal isEditMode={isEditModeTitle || isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} title={(
-			<SwitchableTextarea value={store.getTodoTitle(todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
-								isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold fontSize={20}/>
-		)}>
+		<Modal isEditMode={isEditModeTitle || isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} className={modalClassName}
+			   title={(
+				   <SwitchableTextarea value={store.getTodoTitle(todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
+									   isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold fontSize={20}/>
+			   )}>
 			<div className={s.descriptionDiv}>
 				<img src={description} alt='description' className={s.descriptionIcon}/>
 				<div className={s.descriptionTitle}>
