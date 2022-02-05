@@ -17,9 +17,9 @@ interface Props {
 }
 
 export const SwitchableTextarea: FC<Props> = ({
-												  shouldExitOnEnter = true, value, handleOnChange, placeholder,
-												  isEditMode, setIsEditMode, maxRows, bold = false, fontSize
-											  }) => {
+	                                              shouldExitOnEnter = true, value, handleOnChange, placeholder,
+	                                              isEditMode, setIsEditMode, maxRows, bold = false, fontSize,
+                                              }) => {
 	const ref = useRef<HTMLTextAreaElement>(null)
 
 	const handleOnClick: MouseEventHandler<HTMLTextAreaElement> = () => {
@@ -43,6 +43,8 @@ export const SwitchableTextarea: FC<Props> = ({
 		setIsEditMode(false)
 	})
 
-	return <TextareaAutosize className={clsx(s.textarea, isEditMode && s.active, bold && s.bold)} value={value} onChange={handleOnChange} ref={ref}
-							 onClick={handleOnClick} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows} style={{fontSize}}/>
+	return <TextareaAutosize className={clsx(s.textarea, isEditMode && s.active,
+		bold && s.bold)} value={value} onChange={handleOnChange} ref={ref}
+	                         onClick={handleOnClick} onKeyDown={handleOnKeyDown} placeholder={placeholder} maxRows={maxRows} style={{fontSize}}
+	/>
 }

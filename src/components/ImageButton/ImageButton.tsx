@@ -11,8 +11,10 @@ interface ImageButtonProps {
 	style?: CSSProperties
 }
 
-export const ImageButton: FC<ImageButtonProps> = ({src, alt, size = 15, handleClick, className,
-												  style}) => {
+export const ImageButton: FC<ImageButtonProps> = ({
+	                                                  src, alt, size = 15, handleClick, className,
+	                                                  style,
+                                                  }) => {
 	return (
 		<button className={clsx(s.btn, className)} onClick={handleClick} style={style}>
 			<img className={s.img} src={src} alt={alt} width={size} height={size}/>

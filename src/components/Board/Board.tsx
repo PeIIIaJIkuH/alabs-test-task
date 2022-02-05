@@ -45,7 +45,8 @@ export const Board: FC = observer(() => {
 			<img src={store.bgImageUrl} alt='background' className={clsx(s.backgroundImg, imgClassName)}/>
 			<Columns columns={store.getColumns()}/>
 			<ImageButton src={refresh} alt='refresh' handleClick={handleOnClick} className={s.changeBackgroundBtn} size={25}
-						 style={{transform: `rotate(${degree}deg)`}}/>
+			             style={{transform: `rotate(${degree}deg)`}}
+			/>
 		</div>
 	)
 })

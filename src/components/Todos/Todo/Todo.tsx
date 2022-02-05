@@ -62,8 +62,10 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 	return <>
 		<Draggable draggableId={todo.id} index={index}>
 			{({draggableProps, dragHandleProps, innerRef}, {isDragging}) => (
-				<div className={clsx(s.todo, isDeleting && s.hideTodo, store.createdItemId === todo.id && s.showTodo, isDragging && s.draggingTodo)}
-					 onClick={handleOnTodoClick} {...draggableProps} {...dragHandleProps} ref={innerRef}>
+				<div className={clsx(s.todo, isDeleting && s.hideTodo, store.createdItemId === todo.id && s.showTodo,
+					isDragging && s.draggingTodo)}
+				     onClick={handleOnTodoClick} {...draggableProps} {...dragHandleProps} ref={innerRef}
+				>
 					<div>
 						<div className={s.title}>
 							{todo.title ? todo.title : 'Enter title'}
@@ -79,20 +81,26 @@ export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
 			)}
 		</Draggable>
 
-		<Modal isEditMode={isEditModeTitle || isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} className={modalClassName}
-			   title={(
-				   <SwitchableTextarea value={store.getTodoTitle(todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
-									   isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold fontSize={20}/>
-			   )}>
+		<Modal isEditMode={isEditModeTitle ||
+			isEditModeDescription} isOpen={isModalOpen} closeModal={handleOnModalClose} className={modalClassName}
+		       title={(
+			       <SwitchableTextarea value={store.getTodoTitle(
+				       todo)} handleOnChange={handleOnTitleChange} placeholder='Enter title'
+			                           isEditMode={isEditModeTitle} setIsEditMode={setIsEditModeTitle} maxRows={5} bold fontSize={20}
+			       />
+		       )}
+		>
 			<div className={s.descriptionDiv}>
 				<img src={description} alt='description' className={s.descriptionIcon}/>
 				<div className={s.descriptionTitle}>
 					Description
 				</div>
 			</div>
-			<SwitchableTextarea shouldExitOnEnter={false} value={store.getTodoDescription(todo)} handleOnChange={handleOnDescriptionChange}
-								placeholder='Add some description' isEditMode={isEditModeDescription} setIsEditMode={setIsEditModeDescription}
-								maxRows={15}/>
+			<SwitchableTextarea shouldExitOnEnter={false} value={store.getTodoDescription(
+				todo)} handleOnChange={handleOnDescriptionChange}
+			                    placeholder='Add some description' isEditMode={isEditModeDescription} setIsEditMode={setIsEditModeDescription}
+			                    maxRows={15}
+			/>
 			<div className={s.creationDate}>
 				<span className={s.creationDateSpan}>Created at: </span>
 				<span className={s.date}>{new Date(todo.creationDate).toString()}</span>

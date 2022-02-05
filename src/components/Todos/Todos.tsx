@@ -15,7 +15,9 @@ export const Todos: FC<TodosProps> = observer(({todos, column}) => {
 	return (
 		<Droppable droppableId={column.id} type='todo'>
 			{({droppableProps, placeholder, innerRef}, {isDraggingOver}) => (
-				<div className={clsx(s.todos, isDraggingOver && s.draggingOverTodos)} {...droppableProps} ref={innerRef}>
+				<div className={clsx(s.todos,
+					isDraggingOver && s.draggingOverTodos)} {...droppableProps} ref={innerRef}
+				>
 					{todos.map((todo: ITodo, index) => (
 						<Todo key={todo.id} todo={todo} column={column} index={index}/>
 					))}

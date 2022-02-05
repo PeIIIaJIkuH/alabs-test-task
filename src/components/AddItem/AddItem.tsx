@@ -83,16 +83,21 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 
 	return (
 		<div
-			className={clsx(s.addDiv, isEditMode && s.expandAddDiv, type === 'column' ? s.addColumnDiv : s.addTodoDiv, itemWasCreated && s.moveRight)}>
+			className={clsx(s.addDiv, isEditMode && s.expandAddDiv, type === 'column' ? s.addColumnDiv : s.addTodoDiv,
+				itemWasCreated && s.moveRight)}
+		>
 			{!isEditMode ? (
-				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : btnClassName, type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
-						onClick={handleOnAddClick}>
+				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : btnClassName,
+					type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
+				        onClick={handleOnAddClick}
+				>
 					{text}
 				</button>
 			) : (
 				<div className={clsx(s.createDiv, isAnimated ? s.showCreateDiv : s.hideCreateDiv)} ref={createDivRef}>
 					<input autoFocus className={s.input} type='text' value={name} onChange={handleOnInputChange} onKeyPress={handleOnInputKeyPress}
-						   onKeyDown={handleOnInputKeyDown} ref={inputRef}/>
+					       onKeyDown={handleOnInputKeyDown} ref={inputRef}
+					/>
 					<div className={s.actions}>
 						<button className={s.createBtn} onClick={handleOnCreateclick}>
 							{text}

@@ -35,7 +35,7 @@ class Store {
 		this.columns.add({
 			id,
 			name: name.trim(),
-			todos: new Set()
+			todos: new Set(),
 		})
 		this.droppableId = v4()
 		this.createdItemId = id
@@ -58,7 +58,7 @@ class Store {
 			title: name.trim(),
 			description: '',
 			creationDate: Date.now(),
-			editDate: Date.now()
+			editDate: Date.now(),
 		})
 		this.droppableId = v4()
 		this.createdItemId = id
@@ -160,7 +160,7 @@ class Store {
 				newColumnTodos.push({id, title, description, creationDate, editDate})
 			})
 			const newColumn: IDBColumn = {
-				id, name, todos: newColumnTodos
+				id, name, todos: newColumnTodos,
 			}
 			columns.push(newColumn)
 		})

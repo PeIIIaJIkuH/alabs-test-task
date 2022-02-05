@@ -42,14 +42,17 @@ export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	return (
 		<Draggable draggableId={column.id} index={index}>
 			{({draggableProps, dragHandleProps, innerRef}, {isDragging}) => (
-				<div className={clsx(s.column, store.createdItemId === column.id && s.showColumn, isDragging && s.draggingColumn,
+				<div className={clsx(s.column, store.createdItemId === column.id && s.showColumn,
+					isDragging && s.draggingColumn,
 					isDeleting && s.hideColumn)} ref={innerRef} {...draggableProps}>
 					<div className={s.header}>
 						<SwitchableTextarea value={store.getColumnName(column)} handleOnChange={handleOnTextareaChange}
-											placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold/>
+						                    placeholder='Enter column name' isEditMode={isEditMode} setIsEditMode={setIsEditMode} maxRows={5} bold
+						/>
 						<div className={clsx(s.actions, isDragging && s.show)}>
 							<ImageButton src={trashCan} alt='trash can' handleClick={handleOnDeleteClick}/>
-							<div className={clsx(s.dragColumn, isDragging && s.draggingColumnThumb)} {...dragHandleProps}>
+							<div className={clsx(s.dragColumn,
+								isDragging && s.draggingColumnThumb)} {...dragHandleProps}>
 								<img src={dots} alt='dots' className={s.dragIcon}/>
 							</div>
 						</div>

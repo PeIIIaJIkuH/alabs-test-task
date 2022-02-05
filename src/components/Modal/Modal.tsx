@@ -14,9 +14,9 @@ interface ModalProps {
 }
 
 export const Modal: FC<ModalProps> = ({
-										  children, className,
-										  isOpen, closeModal, title, isEditMode
-									  }) => {
+	                                      children, className,
+	                                      isOpen, closeModal, title, isEditMode,
+                                      }) => {
 	useEffect(() => {
 		const listener = (e: KeyboardEvent) => {
 			if (e.key === 'Escape' && !isEditMode) {
