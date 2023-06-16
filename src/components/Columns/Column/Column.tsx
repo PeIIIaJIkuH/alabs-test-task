@@ -19,10 +19,10 @@ interface ColumnProps {
 	index: number
 }
 
-export const Column: FC<ColumnProps> = observer(({column, index}) => {
-	const [isEditMode, setIsEditMode] = useState(false),
-		[isDeleting, setIsDeleting] = useState(false),
-		textareaRef = useRef<HTMLTextAreaElement>(null)
+export const Column = observer(forwardRef(({column, index}: ColumnProps, ref) => {
+	const [isEditMode, setIsEditMode] = useState(false)
+	const [isDeleting, setIsDeleting] = useState(false)
+	const textareaRef = useRef<HTMLTextAreaElement>(null)
 
 	const handleOnDeleteClick = () => {
 		setIsDeleting(true)

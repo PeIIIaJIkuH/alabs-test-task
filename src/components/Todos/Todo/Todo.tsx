@@ -19,11 +19,11 @@ interface TodoProps {
 }
 
 export const Todo: FC<TodoProps> = observer(({todo, column, index}) => {
-	const [isModalOpen, setIsModalOpen] = useState(false),
-		[isEditModeDescription, setIsEditModeDescription] = useState(false),
-		[isEditModeTitle, setIsEditModeTitle] = useState(false),
-		[isDeleting, setIsDeleting] = useState(false),
-		[modalClassName, setModalClassName] = useState('')
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isEditModeDescription, setIsEditModeDescription] = useState(false)
+	const [isEditModeTitle, setIsEditModeTitle] = useState(false)
+	const [isDeleting, setIsDeleting] = useState(false)
+	const [modalClassName, setModalClassName] = useState('')
 
 	const handleOnDeleteClick = () => {
 		setIsDeleting(true)

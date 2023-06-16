@@ -9,13 +9,13 @@ import {ImageButton} from '../ImageButton/ImageButton'
 import s from './Board.module.css'
 
 export const Board: FC = observer(() => {
-	const [bgImgUrl, setBgImgUrl] = useState(''),
-		[imgClassName, setImgClassName] = useState(''),
-		[degree, setDegree] = useState(0)
+	const [bgImgUrl, setBgImgUrl] = useState('')
+	const [imgClassName, setImgClassName] = useState('')
+	const [degree, setDegree] = useState(0)
 
 	const handleOnClick = () => {
-		const {innerWidth, innerHeight} = window,
-			id = getRandomInt(0, 50)
+		const {innerWidth, innerHeight} = window
+		const id = getRandomInt(0, 50)
 		setBgImgUrl(`https://picsum.photos/id/${id}/${innerWidth}/${innerHeight}`)
 	}
 

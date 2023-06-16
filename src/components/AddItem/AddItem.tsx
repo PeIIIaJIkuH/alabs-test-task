@@ -15,13 +15,13 @@ interface AddItemProps {
 }
 
 export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
-	const [name, setName] = useState(''),
-		[isEditMode, setIsEditMode] = useState(false),
-		[isAnimated, setIsAnimated] = useState(false),
-		[itemWasCreated, setItemWasCreated] = useState(false),
-		[btnClassName, setBtnClassName] = useState(''),
-		inputRef = useRef<HTMLInputElement>(null),
-		createDivRef = useRef<HTMLDivElement>(null)
+	const [name, setName] = useState('')
+	const [isEditMode, setIsEditMode] = useState(false)
+	const [isAnimated, setIsAnimated] = useState(false)
+	const [itemWasCreated, setItemWasCreated] = useState(false)
+	const [btnClassName, setBtnClassName] = useState('')
+	const inputRef = useRef<HTMLInputElement>(null)
+	const createDivRef = useRef<HTMLDivElement>(null)
 
 	const handleOnInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		setName(trim(e.target.value))
