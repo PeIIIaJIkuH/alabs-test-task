@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
 import {FC, useEffect, useState} from 'react'
-import refresh from '../../assets/images/refresh.svg'
+import refresh from '../../assets/icons/refresh.svg'
 import store from '../../store/store'
 import {getRandomInt} from '../../utils/getRandomInt'
 import {Columns} from '../Columns/Columns'

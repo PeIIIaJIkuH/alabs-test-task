@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import {FC, ReactElement, useEffect} from 'react'
 import ReactDom from 'react-dom'
-import close from '../../assets/images/close.svg'
+import close from '../../assets/icons/close.svg'
 import {ImageButton} from '../ImageButton/ImageButton'
 import s from './Modal.module.css'
 

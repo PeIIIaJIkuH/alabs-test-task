@@ -6,7 +6,7 @@ import {IColumn} from '../../types/types'
 import {trim} from '../../utils/trim'
 import {ImageButton} from '../ImageButton/ImageButton'
 import s from './AddItem.module.css'
-import close from '../../assets/images/close.svg'
+import close from '../../assets/icons/close.svg'
 
 interface AddItemProps {
 	text: string
