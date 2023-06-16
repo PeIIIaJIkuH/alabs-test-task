@@ -58,7 +58,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 		setName('')
 	}
 
-	const handleOnInputKeyPress: KeyboardEventHandler<HTMLInputElement> = (e) => {
+	const handleOnInputKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
 		if (e.key === 'Enter' && name.trim() !== '') {
 			createItem(name)
 		}
@@ -95,7 +95,7 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 				</button>
 			) : (
 				<div className={clsx(s.createDiv, isAnimated ? s.showCreateDiv : s.hideCreateDiv)} ref={createDivRef}>
-					<input autoFocus className={s.input} type='text' value={name} onChange={handleOnInputChange} onKeyPress={handleOnInputKeyPress}
+					<input autoFocus className={s.input} type='text' value={name} onChange={handleOnInputChange} onKeyUp={handleOnInputKeyUp}
 					       onKeyDown={handleOnInputKeyDown} ref={inputRef}
 					/>
 					<div className={s.actions}>
