@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import {ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState} from 'react'
 import {useOnClickOutside} from '../../hooks/useOnClickOutside'
-import store from '../../store/store'
+import {store} from '../../store/store'
 import {IColumn} from '../../types/types'
 import {trim} from '../../utils/trim'
 import {ImageButton} from '../ImageButton/ImageButton'

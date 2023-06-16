@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite'
 import {FC} from 'react'
 import {DragDropContext, Droppable, DropResult} from 'react-beautiful-dnd'
-import store from '../../store/store'
+import {store} from '../../store/store'
 import {IColumn} from '../../types/types'
 import {AddItem} from '../AddItem/AddItem'
 import {Column} from './Column/Column'

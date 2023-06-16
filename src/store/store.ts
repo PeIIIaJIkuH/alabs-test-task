@@ -197,4 +197,8 @@ class Store {
 	}
 }
 
-export default new Store()
+const store = new Store()
+
+export {
+	store,
+}
