@@ -19,7 +19,7 @@ interface ColumnProps {
 	index: number
 }
 
-export const Column = observer(forwardRef(({column, index}: ColumnProps, ref) => {
+export const Column: FC<ColumnProps> = observer(({column, index}) => {
 	const [isEditMode, setIsEditMode] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
 	const textareaRef = useRef<HTMLTextAreaElement>(null)
