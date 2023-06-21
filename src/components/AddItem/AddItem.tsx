@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import {ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState} from 'react'
-import {useOnClickOutside} from '../../hooks/useOnClickOutside'
-import {store} from '../../store/store'
-import {IColumn} from '../../types/types'
-import {trim} from '../../utils/trim'
-import {ImageButton} from '../ImageButton/ImageButton'
+import { ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState } from 'react'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
+import { store } from '../../store'
+import { IColumn } from '../../types'
+import { trim } from '../../utils/trim'
+import { ImageButton } from '../ImageButton/ImageButton'
 import s from './AddItem.module.css'
 import close from '../../assets/icons/close.svg'
 
@@ -14,7 +14,7 @@ interface AddItemProps {
 	column?: IColumn
 }
 
-export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
+export const AddItem: FC<AddItemProps> = ({ text, type, column }) => {
 	const [name, setName] = useState('')
 	const [isEditMode, setIsEditMode] = useState(false)
 	const [isAnimated, setIsAnimated] = useState(false)
@@ -83,26 +83,41 @@ export const AddItem: FC<AddItemProps> = ({text, type, column}) => {
 
 	return (
 		<div
-			className={clsx(s.addDiv, isEditMode && s.expandAddDiv, type === 'column' ? s.addColumnDiv : s.addTodoDiv,
-				itemWasCreated && s.moveRight)}
+			className={clsx(
+				s.addDiv,
+				isEditMode && s.expandAddDiv,
+				type === 'column' ? s.addColumnDiv : s.addTodoDiv,
+				itemWasCreated && s.moveRight,
+			)}
 		>
 			{!isEditMode ? (
-				<button className={clsx(s.addBtn, isAnimated ? s.hideAddBtn : btnClassName,
-					type === 'column' ? s.addColumnBtn : s.addTodoBtn)}
-				        onClick={handleOnAddClick}
+				<button
+					className={clsx(
+						s.addBtn,
+						isAnimated ? s.hideAddBtn : btnClassName,
+						type === 'column' ? s.addColumnBtn : s.addTodoBtn,
+					)}
+					onClick={handleOnAddClick}
 				>
 					{text}
 				</button>
 			) : (
 				<div className={clsx(s.createDiv, isAnimated ? s.showCreateDiv : s.hideCreateDiv)} ref={createDivRef}>
-					<input autoFocus className={s.input} type='text' value={name} onChange={handleOnInputChange} onKeyUp={handleOnInputKeyUp}
-					       onKeyDown={handleOnInputKeyDown} ref={inputRef}
+					<input
+						autoFocus
+						className={s.input}
+						type='text'
+						value={name}
+						onChange={handleOnInputChange}
+						onKeyUp={handleOnInputKeyUp}
+						onKeyDown={handleOnInputKeyDown}
+						ref={inputRef}
 					/>
 					<div className={s.actions}>
 						<button className={s.createBtn} onClick={handleOnCreateclick}>
 							{text}
 						</button>
-						<ImageButton src={close} alt='close' handleClick={handleOnCancelClick}/>
+						<ImageButton src={close} alt='close' handleClick={handleOnCancelClick} />
 					</div>
 				</div>
 			)}

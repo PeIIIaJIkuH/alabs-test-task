@@ -17,3 +17,14 @@ export interface IDBColumn {
 	name: string
 	todos: ITodo[]
 }
+
+export interface TodoItem {
+	id: string
+	index: number
+	srcColumnId: string
+}
+
+export interface ColumnItem {
+	id: string
+	index: number
+}

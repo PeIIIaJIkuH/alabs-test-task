@@ -1,53 +1,53 @@
 .board {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding-bottom: 10px;
-    position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	padding-bottom: 10px;
+	position: relative;
 }
 
 .backgroundImg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    object-fit: cover;
-    transition: opacity 0.2s;
-    opacity: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	object-fit: cover;
+	transition: opacity 0.2s;
+	opacity: 1;
 }
 
 .hide {
-    opacity: 0;
+	opacity: 0;
 }
 
 .changeBackgroundBtn {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
-    padding: 0;
-    margin: 0;
-    transition: transform 2s;
+	position: absolute;
+	bottom: 25px;
+	right: 25px;
+	padding: 0;
+	margin: 0;
+	transition: transform 2s;
 }
 
 .changeBackgroundBtn:hover {
-    background: transparent;
+	background: transparent;
 }
 
 .changeBackgroundBtn:active {
-    background: transparent;
+	background: transparent;
 }
 
 .rotate {
-    animation: rotate 0.5s infinite linear;
+	animation: rotate 0.5s infinite linear;
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg);
-    }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
 }

@@ -1,9 +1,9 @@
-import {makeAutoObservable} from 'mobx'
-import {v4} from 'uuid'
-import {IColumn, IDBColumn, ITodo} from '../types/types'
-import {DEFAULTS} from '../utils/constants'
+import { makeAutoObservable } from 'mobx'
+import { v4 } from 'uuid'
+import { IColumn, IDBColumn, ITodo } from './types'
+import { DEFAULTS } from './utils/constants'
 
-class Store {
+class Index {
 	droppableId: string = v4()
 	bgImageUrl: string = DEFAULTS.bgImageUrl
 	createdItemId: string = ''
@@ -106,7 +106,7 @@ class Store {
 
 	getColumnById(id: string): IColumn | null {
 		let column: IColumn | null = null
-		this.columns.forEach(col => {
+		this.columns.forEach((col) => {
 			if (col.id === id) {
 				column = col
 				return
@@ -117,7 +117,7 @@ class Store {
 
 	getTodoById(column: IColumn, id: string): ITodo | null {
 		let todo: ITodo | null = null
-		column.todos.forEach(t => {
+		column.todos.forEach((t) => {
 			if (t.id === id) {
 				todo = t
 				return t
@@ -126,14 +126,12 @@ class Store {
 		return todo
 	}
 
-	swapTodos(sourceColumnId: string, destinationColumnId: string, todoId: string, destinationIndex: number) {
-		const sourceColumn = this.getColumnById(sourceColumnId),
-			destinationColumn = this.getColumnById(destinationColumnId)
-		if (!sourceColumn || !destinationColumn)
-			return
+	moveTodo(sourceColumnId: string, destinationColumnId: string, todoId: string, destinationIndex: number) {
+		const sourceColumn = this.getColumnById(sourceColumnId)
+		const destinationColumn = this.getColumnById(destinationColumnId)
+		if (!sourceColumn || !destinationColumn) return
 		const todo = this.getTodoById(sourceColumn, todoId)
-		if (!todo)
-			return
+		if (!todo) return
 		sourceColumn.todos.delete(todo)
 		const newTodosArray = Array.from(destinationColumn.todos)
 		newTodosArray.splice(destinationIndex, 0, todo)
@@ -142,9 +140,9 @@ class Store {
 		this.saveColumnsToLocalStorage()
 	}
 
-	swapColumns(sourceColumnIndex: number, destinationColumnIndex: number) {
+	moveColumn(sourceColumnIndex: number, destinationColumnIndex: number) {
 		const columnsArray = Array.from(this.columns)
-		const column = {...columnsArray[sourceColumnIndex]}
+		const column = { ...columnsArray[sourceColumnIndex] }
 		columnsArray.splice(sourceColumnIndex, 1)
 		columnsArray.splice(destinationColumnIndex, 0, column)
 		this.columns = new Set(columnsArray)
@@ -154,13 +152,15 @@ class Store {
 
 	saveColumnsToLocalStorage() {
 		const columns: IDBColumn[] = []
-		this.columns.forEach(({id, name, todos}) => {
+		this.columns.forEach(({ id, name, todos }) => {
 			const newColumnTodos: ITodo[] = []
-			todos.forEach(({id, title, description, creationDate, editDate}) => {
-				newColumnTodos.push({id, title, description, creationDate, editDate})
+			todos.forEach(({ id, title, description, creationDate, editDate }) => {
+				newColumnTodos.push({ id, title, description, creationDate, editDate })
 			})
 			const newColumn: IDBColumn = {
-				id, name, todos: newColumnTodos,
+				id,
+				name,
+				todos: newColumnTodos,
 			}
 			columns.push(newColumn)
 		})
@@ -169,16 +169,15 @@ class Store {
 
 	getColumnsFromLocalStorage() {
 		const item = localStorage.getItem('columns-data')
-		if (!item)
-			return
+		if (!item) return
 		const data: IDBColumn[] = JSON.parse(item)
 		const columns = new Set<IColumn>()
-		data.forEach(({id, name, todos}) => {
+		data.forEach(({ id, name, todos }) => {
 			const newTodos = new Set<ITodo>()
-			todos.forEach(({id, title, description, creationDate, editDate}) => {
-				newTodos.add({id, title, description, creationDate, editDate})
+			todos.forEach(({ id, title, description, creationDate, editDate }) => {
+				newTodos.add({ id, title, description, creationDate, editDate })
 			})
-			columns.add({id, name, todos: newTodos})
+			columns.add({ id, name, todos: newTodos })
 		})
 		this.columns = columns
 	}
@@ -197,8 +196,6 @@ class Store {
 	}
 }
 
-const store = new Store()
+const store = new Index()
 
-export {
-	store,
-}
+export { store }

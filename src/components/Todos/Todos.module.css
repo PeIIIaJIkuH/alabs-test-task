@@ -1,32 +1,32 @@
 .todos {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-right: 4px;
-    padding-right: 4px;
-    border-radius: 5px;
-    min-height: 40px;
-    max-width: 238px;
-    transition: background 0.2s;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	margin-right: 4px;
+	padding-right: 4px;
+	border-radius: 5px;
+	min-height: 40px;
+	max-width: 238px;
+	transition: background 0.2s;
 }
 
 .todos::-webkit-scrollbar {
-    width: 8px;
+	width: 8px;
 }
 
 .todos::-webkit-scrollbar-track {
-    background: #dadbe2;
-    border-radius: 3px;
+	background: #dadbe2;
+	border-radius: 3px;
 }
 
 .todos::-webkit-scrollbar-thumb {
-    background: #bfc4ce;
-    border-radius: 3px;
+	background: #bfc4ce;
+	border-radius: 3px;
 }
 
 .todos::-webkit-scrollbar-thumb:hover {
-    background: #b0b3bd;
+	background: #b0b3bd;
 }
 
 .draggingOverTodos {
-    background: ghostwhite;
+	background: ghostwhite;
 }

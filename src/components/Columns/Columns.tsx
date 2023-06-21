@@ -1,43 +1,31 @@
-import {observer} from 'mobx-react-lite'
-import {FC} from 'react'
-import {DragDropContext, Droppable, DropResult} from 'react-beautiful-dnd'
-import {store} from '../../store/store'
-import {IColumn} from '../../types/types'
-import {AddItem} from '../AddItem/AddItem'
-import {Column} from './Column/Column'
+import { FC } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useDrop } from 'react-dnd'
+import { ColumnItem, IColumn } from '../../types'
+import { AddItem } from '../AddItem/AddItem'
+import { Column } from './Column/Column'
 import s from './Columns.module.css'
+import { ItemTypes } from '../../constants/item-types'
 
 interface ColumnsProps {
 	columns: IColumn[]
 }
 
-export const Columns: FC<ColumnsProps> = observer(({columns}) => {
-	const handleOnDragEnd = ({destination, source, draggableId, type}: DropResult) => {
-		if (!destination)
-			return
-		if (destination.droppableId === source.droppableId && destination.index === source.index)
-			return
-		if (type === 'todo') {
-			store.swapTodos(source.droppableId, destination.droppableId, draggableId, destination.index)
-		} else if (type === 'column') {
-			store.swapColumns(source.index, destination.index)
-		}
-	}
+export const Columns: FC<ColumnsProps> = observer(({ columns }) => {
+	const [{ isOver }, drop] = useDrop<ColumnItem, void, { isOver: boolean }>({
+		accept: ItemTypes.COLUMN,
+		drop: ({ id, index }) => {},
+		collect: (monitor) => ({
+			isOver: monitor.isOver(),
+		}),
+	})
 
 	return (
-		<DragDropContext onDragEnd={handleOnDragEnd}>
-			<Droppable droppableId={store.droppableId} direction='horizontal' type='column'>
-				{({droppableProps, innerRef, placeholder}) => (
-					<div className={s.columns} {...droppableProps} ref={innerRef}>
-						{columns.map((column: IColumn, index) => (
-							<Column key={column.id} column={column} index={index}/>
-						))}
-						{placeholder}
-						<AddItem text='Add Column' type='column'/>
-					</div>
-
-				)}
-			</Droppable>
-		</DragDropContext>
+		<div className={s.columns} ref={drop}>
+			{columns.map((column: IColumn, index) => (
+				<Column key={column.id} column={column} index={index} />
+			))}
+			<AddItem text='Add Column' type='column' />
+		</div>
 	)
 })

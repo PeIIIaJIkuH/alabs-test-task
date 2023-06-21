@@ -1,46 +1,46 @@
 .textarea {
-    outline: none;
-    background: transparent;
-    resize: none;
-    width: 100%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 4px;
-    font-size: 16px;
-    transition: background 0.2s;
+	outline: none;
+	background: transparent;
+	resize: none;
+	width: 100%;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	padding: 5px;
+	margin-right: 4px;
+	font-size: 16px;
+	transition: background 0.2s;
 }
 
 .textarea:hover {
-    background: rgba(0, 0, 0, 0.08);
+	background: rgba(0, 0, 0, 0.08);
 }
 
 .bold {
-    font-weight: 600;
+	font-weight: 600;
 }
 
 .textarea::-webkit-scrollbar {
-    width: 8px;
-    background: #dadbe2;
-    border-radius: 2px;
+	width: 8px;
+	background: #dadbe2;
+	border-radius: 2px;
 }
 
 .textarea::-webkit-scrollbar-track {
-    width: 8px;
-    background: #dadbe2;
-    border-radius: 2px;
+	width: 8px;
+	background: #dadbe2;
+	border-radius: 2px;
 }
 
 .textarea::-webkit-scrollbar-thumb {
-    background: #bfc4ce;
-    border-radius: 4px;
+	background: #bfc4ce;
+	border-radius: 4px;
 }
 
 .textarea::-webkit-scrollbar-thumb:hover {
-    background: #b0b3bd;
+	background: #b0b3bd;
 }
 
 .active {
-    border: 2px solid #0079bf;
+	border: 2px solid #0079bf;
 }
